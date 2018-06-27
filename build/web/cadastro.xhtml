@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        <link rel="stylesheet" type="text/css" href="css/estilo.css" />        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        
+    </head>
+    <body>
+        <div class="header">
+            <div id="logo">
+                <a href="index.xhtml" class="on-top">
+                    CLINICA<br/>
+                    Saude &amp; CIA<br/>
+                </a>
+            </div>
+            
+        </div>
+        
+        <nav>
+            <ul class="nav-vertical">
+                <li class="li-vertical"><a>Paciente</a>
+                    <ul> 
+                        <li><a href="#">Cadastrar</a></li> 
+                        <li><a href="#">Visualisar</a></li> 
+                    </ul> 
+                </li>
+                
+                <li class="li-vertical">
+                    <a href="#">Consulta</a>
+                </li>
+                
+                <li class="li-vertical">
+                    <a href="#">Relatórios</a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="conteudo">
+         <h:form>
+             
+            <h:outputText value="Nome" />
+            <br />
+            <h:inputText id="nome" title="Nome" value="#{pacienteCadastroBean.nome}" />
+            <br />
+            <br />
+            
+            <h:outputText value="Cpf" />
+            <br />
+            <h:inputText id="cpf" title="Cpf" value="#{pacienteCadastroBean.cpf}" />
+            <br />
+            <br />
+
+            <h:outputText value="Rg" />
+            <br />
+            <h:inputText id="rg" title="Rg" value="#{pacienteCadastroBean.rg}" />
+            <br />
+            <br />
+
+            <h:outputText value="Nascimento" />
+            <br />
+            <h:inputText id="nascimento" title="Nascimento" value="#{pacienteCadastroBean.dataNascimento}" />
+            <br />
+            <br />
+
+            <h:outputText value="Celular" />
+            <br />
+            <h:inputText id="celular" title="Celular" value="#{pacienteCadastroBean.telefoneCelular}" />
+            <br />
+            <br />
+
+            <h:outputText value="Email" />
+            <br />
+            <h:inputText id="email" title="Email" value="#{pacienteCadastroBean.email}" />
+            <br />
+            <br />
+
+            <h:outputText value="Endereço" />
+            <br />
+            <h:inputText id="endereco" title="Endereço" value="#{pacienteCadastroBean.endereco}" />
+            <br />
+            <br />
+
+            <h:outputText value="Convenio" />
+            <br />
+            <h:inputText id="convenio" title="Convenio" value="#{pacienteCadastroBean.tipoConvenio}" />
+            <br />
+            <br />
+
+            
+            <h:commandButton id="submit" value="cadastrar" action="#{pacienteCadastroBean.salvar()}" />
+            
+        </h:form>
+        </div>
+    </body>
+</html>
