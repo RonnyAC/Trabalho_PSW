@@ -5,10 +5,10 @@
  */
 package control;
 
-import dados.Dados;
 import java.util.List;
-import model.DAOPaciente;
+import model.dao.DAOPaciente;
 import model.Paciente;
+
 
 /**
  *
@@ -27,11 +27,7 @@ public class SecretariaControler {
     }
     //TRATAR NAO EXISTENCIA DE CPF PARA ENVIAR MENSAGEM PERGUNTANDO SE DESEJA ALTERAR.
     public void salvarPaciente(Paciente paciente){
-        if(Dados.getListaPacientes().isEmpty() || !acoesPaciente.checaCpf(paciente.getCpf())){
-            acoesPaciente.inserir(paciente);
-        }else{
-            acoesPaciente.alterar(paciente);
-        }
+        
     }
     
     public void excluirPaciente(String cpf){
@@ -39,12 +35,12 @@ public class SecretariaControler {
     }
     
     public Paciente buscarPaciente(String cpf){
-        Paciente paciente = acoesPaciente.getPacienteCpf(cpf);
+        Paciente pessoa = new Paciente();
         
-        return paciente;
+        return null;
     }
     
     public List<Paciente> listarPacientes(){
-        return Dados.getListaPacientes();
+        return null;
     }
 }

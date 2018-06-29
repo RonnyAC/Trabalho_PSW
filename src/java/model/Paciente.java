@@ -5,63 +5,94 @@
  */
 package model;
 
+import java.sql.Date;
+import java.util.List;
+
 /**
  *
  * @author Ronny
  */
-public class Paciente {
-    //Atributos
-    private final String nome;
-    private final String cpf;
-    private final String rg;
-    private final String dataNascimento;
-    private final String endereco;
-    private final String telefoneCelular;
-    private final String email;
-    private final String tipoConvenio;
+public class Paciente extends Pessoa{
+    private boolean fuma;
+    private boolean bebe;
+    private boolean colesterol;
+    private boolean diabete;
+    private boolean doencaCardiaca;
+    private List<Adicionais> cirurgias;
+    private List<Adicionais> alergias; 
 
-    public Paciente(String nome, String cpf, String rg, String dataNascimento, String endereco, String telefoneCelular, String email, String tipoConvenio) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.rg = rg;
-        this.dataNascimento = dataNascimento;
-        this.endereco = endereco;
-        this.telefoneCelular = telefoneCelular;
-        this.email = email;
-        this.tipoConvenio = tipoConvenio;
+    public Paciente(int id, String nome, String cpf, String rg, Date dataNascimento, String endereco, String telefoneCelular, String email, String tipoConvenio) {
+        super(id, nome, cpf, rg, dataNascimento, endereco, telefoneCelular, email, tipoConvenio);
     }
 
-    public String getNome() {
-        return nome;
+    public Paciente(boolean fuma, boolean bebe, boolean colesterol, boolean diabete, boolean doencaCardiaca, List<Adicionais> cirurgias, List<Adicionais> alergias) {
+        this.fuma = fuma;
+        this.bebe = bebe;
+        this.colesterol = colesterol;
+        this.diabete = diabete;
+        this.doencaCardiaca = doencaCardiaca;
+        this.cirurgias = cirurgias;
+        this.alergias = alergias;
     }
 
-    public String getCpf() {
-        return cpf;
+    public Paciente() {
+        
     }
 
-    public String getRg() {
-        return rg;
+    public boolean isFuma() {
+        return fuma;
     }
 
-    public String getDataNascimento() {
-        return dataNascimento;
+    public boolean isBebe() {
+        return bebe;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public boolean isColesterol() {
+        return colesterol;
     }
 
-    public String getTelefoneCelular() {
-        return telefoneCelular;
+    public boolean isDiabete() {
+        return diabete;
     }
 
-    public String getEmail() {
-        return email;
+    public boolean isDoencaCardiaca() {
+        return doencaCardiaca;
     }
 
-    public String getTipoConvenio() {
-        return tipoConvenio;
+    public List<Adicionais> getCirurgias() {
+        return cirurgias;
     }
-    
+
+    public List<Adicionais> getAlergias() {
+        return alergias;
+    }
+
+    public void setFuma(boolean fuma) {
+        this.fuma = fuma;
+    }
+
+    public void setBebe(boolean bebe) {
+        this.bebe = bebe;
+    }
+
+    public void setColesterol(boolean colesterol) {
+        this.colesterol = colesterol;
+    }
+
+    public void setDiabete(boolean diabete) {
+        this.diabete = diabete;
+    }
+
+    public void setDoencaCardiaca(boolean doencaCardiaca) {
+        this.doencaCardiaca = doencaCardiaca;
+    }
+
+    public void setCirurgias(List<Adicionais> cirurgias) {
+        this.cirurgias = cirurgias;
+    }
+
+    public void setAlergias(List<Adicionais> alergias) {
+        this.alergias = alergias;
+    }
     
 }

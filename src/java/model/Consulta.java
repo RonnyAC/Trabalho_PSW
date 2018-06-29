@@ -5,24 +5,30 @@
  */
 package model;
 
+import java.sql.Date;
+import java.sql.Time;
+import model.enuns.TipoConsulta;
+
 /**
  *
  * @author Ronny
  */
 public class Consulta {
     private Integer id;
-    private String data;
-    private String horario;
-    private String medico;
+    private Date data;
+    private Time horario;
+    private Medico medico;
     private Paciente paciente;
-    private String tipo;
+    private Funcionario funcionario;
+    private TipoConsulta tipo;
 
-    public Consulta(Integer id, String data, String horario, String medico, Paciente paciente, String tipo) {
+    public Consulta(Integer id, Date data, Time horario, Medico medico, Paciente paciente, Funcionario secretatia, TipoConsulta tipo) {
         this.id = id;
         this.data = data;
         this.horario = horario;
         this.medico = medico;
         this.paciente = paciente;
+        this.funcionario = secretatia;
         this.tipo = tipo;
     }
 
@@ -34,23 +40,27 @@ public class Consulta {
         this.id = id;
     }
     
-    public String getData() {
+    public Date getData() {
         return data;
     }
 
-    public String getHorario() {
+    public Time getHorario() {
         return horario;
     }
 
-    public String getMedico() {
+    public Medico getMedico() {
         return medico;
     }
 
     public Paciente getPaciente() {
         return paciente;
     }
+    
+    public Funcionario getSecretaria() {
+        return funcionario;
+    }
 
-    public String getTipo() {
+    public TipoConsulta getTipo() {
         return tipo;
     }
     
