@@ -113,15 +113,11 @@ public class DAOSecretaria extends DAO {
         return false;
     }
 
-    public Funcionario buscar(String cpf) {
+    public Funcionario buscar(int id) {
         return null;
     }
 
     public List<Funcionario> listar() {
         return null;
-    }
-
-    private boolean checaCpf(String cpf) {
-        return false;
     }
 }

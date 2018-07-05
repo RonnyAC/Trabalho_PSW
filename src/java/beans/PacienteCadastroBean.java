@@ -98,11 +98,11 @@ public class PacienteCadastroBean implements Serializable {
         this.tipoConvenio = tipoConvenio;
     }
     
-    public String salvar(){
-        SecretariaControler.getInstance().salvarPaciente(new Paciente(nome, cpf,
-                rg, dataNascimento, endereco, telefoneCelular, email, tipoConvenio));
-        return "pacientes";
-    }
+   // public String salvar(){
+     //   SecretariaControler.getInstance().salvarPaciente(new Paciente(nome, cpf,
+       //         rg, dataNascimento, endereco, telefoneCelular, email, tipoConvenio));
+        //return "pacientes";
+   // }
     
     public String solicitaEdicao(Paciente paciente){
         this.cpf = paciente.getCpf();

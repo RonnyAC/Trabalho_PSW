@@ -31,7 +31,7 @@ public class SecretariaControler {
     }
     
     public void excluirPaciente(String cpf){
-        acoesPaciente.excluir(cpf);
+        //acoesPaciente.excluir(cpf);
     }
     
     public Paciente buscarPaciente(String cpf){

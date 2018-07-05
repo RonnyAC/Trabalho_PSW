@@ -32,8 +32,4 @@ public class DAOProntuario {
     public List<Prontuario> listar() {
         return null;
     }
-
-    private boolean checaCpf(String cpf) {
-        return false;
-    }
 }

@@ -125,14 +125,11 @@ public class DAOMedico extends DAO {
     public boolean excluir(int id) {
         ConectaSQLite.conectar();
         String sqlDelete = "DELETE FROM tbl_medico WHERE id = ?";
-
         PreparedStatement preparedStatement = null;
 
         try {
             preparedStatement = ConectaSQLite.criarPreparedStatement(sqlDelete);
-
             preparedStatement.setInt(1, id);
-
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -196,11 +193,10 @@ public class DAOMedico extends DAO {
         String sqlSelect = "SELECT * FROM tbl_medicos";
 
         try {
-            Medico medico = new Medico();
             statement = ConectaSQLite.criarStatement();
             resultSet = statement.executeQuery(sqlSelect);
             while (resultSet.next()) {
-                
+                Medico medico = new Medico();
                 medico.setId(resultSet.getInt("id"));
                 medico.setNome(resultSet.getString("nome"));
                 medico.setCpf(resultSet.getString("cpf"));

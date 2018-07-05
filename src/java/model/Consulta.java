@@ -22,6 +22,9 @@ public class Consulta {
     private Funcionario funcionario;
     private TipoConsulta tipo;
 
+    public Consulta() {
+    }
+
     public Consulta(Integer id, Date data, Time horario, Medico medico, Paciente paciente, Funcionario secretatia, TipoConsulta tipo) {
         this.id = id;
         this.data = data;
@@ -39,29 +42,53 @@ public class Consulta {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public Date getData() {
         return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 
     public Time getHorario() {
         return horario;
     }
 
+    public void setHorario(Time horario) {
+        this.horario = horario;
+    }
+
     public Medico getMedico() {
         return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
     }
 
     public Paciente getPaciente() {
         return paciente;
     }
-    
-    public Funcionario getSecretaria() {
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public Funcionario getFuncionario() {
         return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
     public TipoConsulta getTipo() {
         return tipo;
+    }
+
+    public void setTipo(TipoConsulta tipo) {
+        this.tipo = tipo;
     }
     
     
