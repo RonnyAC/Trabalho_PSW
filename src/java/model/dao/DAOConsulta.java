@@ -74,6 +74,11 @@ public class DAOConsulta extends DAO {
         return true;
     }
 
+    /**
+     *
+     * @param consulta
+     * @return
+     */
     public boolean alterar(Consulta consulta) {
         ConectaSQLite.conectar();
 
@@ -106,6 +111,11 @@ public class DAOConsulta extends DAO {
         return true;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public boolean excluir(int id) {
         ConectaSQLite.conectar();
@@ -130,10 +140,15 @@ public class DAOConsulta extends DAO {
         return true;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Consulta buscar(int id) {
         DAOMedico daoMedico = null;
         DAOPaciente daoPaciente = null;
-        DAOSecretaria daoSecretaria = null;
+        DAOFuncionarios daoSecretaria = null;
 
         Integer idMedico = 0;
         Integer idPaciente = 0;
@@ -186,6 +201,10 @@ public class DAOConsulta extends DAO {
         return consulta;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Consulta> listar() {
         List<Consulta> consultas = new ArrayList<>();
         List<CompletaConsulta> medicos = new ArrayList<>();
@@ -254,7 +273,7 @@ public class DAOConsulta extends DAO {
             List<CompletaConsulta> funcionarios) {
         DAOMedico daoMedico = null;
         DAOPaciente daoPaciente = null;
-        DAOSecretaria daoSecretaria = null;
+        DAOFuncionarios daoSecretaria = null;
 
         for (Consulta c : consulta) {
             for (CompletaConsulta m : medicos) {

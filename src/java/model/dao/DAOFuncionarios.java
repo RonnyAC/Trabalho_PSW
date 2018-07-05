@@ -13,25 +13,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Medico;
+import model.Funcionario;
 import model.conexao.ConectaSQLite;
 
 /**
  *
  * @author Ronny
  */
-public class DAOMedico extends DAO {
+public class DAOFuncionarios extends DAO {
 
     /**
      *
-     * @param medico
+     * @param funcionario
      * @return
      */
-    public boolean inserir(Medico medico) {
+    public boolean inserir(Funcionario funcionario) {
         ConectaSQLite.conectar();
         int newID = buscarID("SELECT coalesce(MAX(id), 0)+1 as newID FROM tbl_medicos");
 
-        String sqlInsert = "INSERT INTO tbl_medicos("
+        String sqlInsert = "INSERT INTO tbl_funcionarios("
                 + "id, "
                 + "nome, "
                 + "cpf, "
@@ -40,25 +40,21 @@ public class DAOMedico extends DAO {
                 + "endereco, "
                 + "telefone_celular, "
                 + "email, "
-                + "tipo_convenio, "
-                + "crm, "
-                + "especializacao)"
+                + "tipo_convenio)"
                 + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement preparedStatement = ConectaSQLite.criarPreparedStatement(sqlInsert);
 
         try {
             preparedStatement.setInt(1, newID);
-            preparedStatement.setString(2, medico.getNome());
-            preparedStatement.setString(3, medico.getCpf());
-            preparedStatement.setString(4, medico.getRg());
-            preparedStatement.setDate(5, medico.getDataNascimento());
-            preparedStatement.setString(6, medico.getEndereco());
-            preparedStatement.setString(7, medico.getTelefoneCelular());
-            preparedStatement.setString(8, medico.getEmail());
-            preparedStatement.setString(9, medico.getTipoConvenio());
-            preparedStatement.setString(10, medico.getCrm());
-            preparedStatement.setString(11, medico.getEspecializacao());
+            preparedStatement.setString(2, funcionario.getNome());
+            preparedStatement.setString(3, funcionario.getCpf());
+            preparedStatement.setString(4, funcionario.getRg());
+            preparedStatement.setDate(5, funcionario.getDataNascimento());
+            preparedStatement.setString(6, funcionario.getEndereco());
+            preparedStatement.setString(7, funcionario.getTelefoneCelular());
+            preparedStatement.setString(8, funcionario.getEmail());
+            preparedStatement.setString(9, funcionario.getTipoConvenio());
 
             preparedStatement.executeUpdate();
 
@@ -79,15 +75,15 @@ public class DAOMedico extends DAO {
 
     /**
      *
-     * @param medico
+     * @param funcionario
      * @return
      */
-    public boolean alterar(Medico medico) {
+    public boolean alterar(Funcionario funcionario) {
         ConectaSQLite.conectar();
 
         PreparedStatement preparedStatement = null;
 
-        String sqlUpdate = "UPDATE tbl_medico"
+        String sqlUpdate = "UPDATE tbl_funcionario"
                 + " SET "
                 + " nome = ?,"
                 + " cpf = ?,"
@@ -96,25 +92,21 @@ public class DAOMedico extends DAO {
                 + " endereco = ?,"
                 + " telefone_celular = ?,"
                 + " email = ?,"
-                + " tipo_convenio = ?,"
-                + " crm = ?,"
-                + " especializacao = ?"
+                + " tipo_convenio = ?"
                 + " WHERE id = ?";
 
         try {
             preparedStatement = ConectaSQLite.criarPreparedStatement(sqlUpdate);
 
-            preparedStatement.setString(1, medico.getNome());
-            preparedStatement.setString(2, medico.getCpf());
-            preparedStatement.setString(3, medico.getRg());
-            preparedStatement.setDate(4, medico.getDataNascimento());
-            preparedStatement.setString(5, medico.getEndereco());
-            preparedStatement.setString(6, medico.getTelefoneCelular());
-            preparedStatement.setString(7, medico.getEmail());
-            preparedStatement.setString(8, medico.getTipoConvenio());
-            preparedStatement.setString(9, medico.getCrm());
-            preparedStatement.setString(10, medico.getEspecializacao());
-            preparedStatement.setInt(11, medico.getId());
+            preparedStatement.setString(1, funcionario.getNome());
+            preparedStatement.setString(2, funcionario.getCpf());
+            preparedStatement.setString(3, funcionario.getRg());
+            preparedStatement.setDate(4, funcionario.getDataNascimento());
+            preparedStatement.setString(5, funcionario.getEndereco());
+            preparedStatement.setString(6, funcionario.getTelefoneCelular());
+            preparedStatement.setString(7, funcionario.getEmail());
+            preparedStatement.setString(8, funcionario.getTipoConvenio());
+            preparedStatement.setInt(9, funcionario.getId());
 
             preparedStatement.executeUpdate();
 
@@ -131,10 +123,15 @@ public class DAOMedico extends DAO {
         return true;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public boolean excluir(int id) {
         ConectaSQLite.conectar();
-        String sqlDelete = "DELETE FROM tbl_medico WHERE id = ?";
+        String sqlDelete = "DELETE FROM tbl_funcionarios WHERE id = ?";
         PreparedStatement preparedStatement = null;
 
         try {
@@ -155,8 +152,13 @@ public class DAOMedico extends DAO {
         return true;
     }
 
-    public Medico buscar(int id) {
-        Medico medico = new Medico();
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public Funcionario buscar(int id) {
+        Funcionario funcionario = new Funcionario();
         ConectaSQLite.conectar();
 
         PreparedStatement preparedStatement = null;
@@ -169,16 +171,17 @@ public class DAOMedico extends DAO {
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
 
-            medico.setId(resultSet.getInt("id"));
-            medico.setNome(resultSet.getString("nome"));
-            medico.setCpf(resultSet.getString("cpf"));
-            medico.setRg(resultSet.getString("rg"));
-            medico.setDataNascimento(resultSet.getDate("data_nascimento"));
-            medico.setEndereco(resultSet.getString("endereco"));
-            medico.setTelefoneCelular(resultSet.getString("telefone_celular"));
-            medico.setEmail(resultSet.getString("email"));
-            medico.setCrm(resultSet.getString("crm"));
-            medico.setEspecializacao(resultSet.getString("especializacao"));
+            funcionario.setId(resultSet.getInt("id"));
+            funcionario.setNome(resultSet.getString("nome"));
+            funcionario.setCpf(resultSet.getString("cpf"));
+            funcionario.setRg(resultSet.getString("rg"));
+            funcionario.setDataNascimento(resultSet.getDate("data_nascimento"));
+            funcionario.setEndereco(resultSet.getString("endereco"));
+            funcionario.setTelefoneCelular(resultSet.getString("telefone_celular"));
+            funcionario.setEmail(resultSet.getString("email"));
+
+            funcionario.setCargo(resultSet.getString("cargo"));
+            funcionario.setMatricula(resultSet.getInt("matricula"));
 
         } catch (SQLException e) {
 
@@ -191,35 +194,39 @@ public class DAOMedico extends DAO {
                 System.err.println("Erro ao fechar: " + ex.getMessage());
             }
         }
-        return medico;
+        return funcionario;
     }
 
-    public List<Medico> listar() {
-        List<Medico> medicos = new ArrayList<>();
+    /**
+     *
+     * @return
+     */
+    public List<Funcionario> listar() {
+        List<Funcionario> funcionarios = new ArrayList<>();
         ConectaSQLite.conectar();
 
         ResultSet resultSet = null;
         Statement statement = null;
-        String sqlSelect = "SELECT * FROM tbl_medicos";
+        String sqlSelect = "SELECT * FROM tbl_funcionarios";
 
         try {
             statement = ConectaSQLite.criarStatement();
             resultSet = statement.executeQuery(sqlSelect);
             while (resultSet.next()) {
-                Medico medico = new Medico();
-                medico.setId(resultSet.getInt("id"));
-                medico.setNome(resultSet.getString("nome"));
-                medico.setCpf(resultSet.getString("cpf"));
-                medico.setRg(resultSet.getString("rg"));
-                medico.setDataNascimento(resultSet.getDate("data_nascimento"));
-                medico.setEndereco(resultSet.getString("endereco"));
-                medico.setTelefoneCelular(resultSet.getString("telefone_celular"));
-                medico.setEmail(resultSet.getString("email"));
+                Funcionario funcionario = new Funcionario();
+                funcionario.setId(resultSet.getInt("id"));
+                funcionario.setNome(resultSet.getString("nome"));
+                funcionario.setCpf(resultSet.getString("cpf"));
+                funcionario.setRg(resultSet.getString("rg"));
+                funcionario.setDataNascimento(resultSet.getDate("data_nascimento"));
+                funcionario.setEndereco(resultSet.getString("endereco"));
+                funcionario.setTelefoneCelular(resultSet.getString("telefone_celular"));
+                funcionario.setEmail(resultSet.getString("email"));
                 
-                medico.setCrm(resultSet.getString("crm"));
-                medico.setEspecializacao(resultSet.getString("especializacao"));
+                funcionario.setCargo(resultSet.getString("cargo"));
+                funcionario.setMatricula(resultSet.getInt("matricula"));
 
-                medicos.add(medico);
+                funcionarios.add(funcionario);
             }
 
         } catch (SQLException e) {
@@ -233,7 +240,6 @@ public class DAOMedico extends DAO {
                 System.err.println("Erro ao fechar: " + ex.getMessage());
             }
         }
-        return medicos;
+        return funcionarios;
     }
-
 }

@@ -5,14 +5,16 @@
  */
 package model;
 
-import java.util.Date;
+import java.sql.Date;
+
+
 
 /**
  *
  * @author Ronny
  */
 public class Prontuario {
-    private int id;
+    private Integer id;
     private Paciente paciente;
     private Date Data;
     private Medico medico;
@@ -23,7 +25,7 @@ public class Prontuario {
     public Prontuario() {
     }
 
-    public Prontuario(int id, Paciente paciente, Date Data, Medico medico, String sintomas, String diagnosticos, String prescricaoTratamento) {
+    public Prontuario(Integer id, Paciente paciente, Date Data, Medico medico, String sintomas, String diagnosticos, String prescricaoTratamento) {
         this.id = id;
         this.paciente = paciente;
         this.Data = Data;
@@ -33,11 +35,11 @@ public class Prontuario {
         this.prescricaoTratamento = prescricaoTratamento;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
