@@ -15,7 +15,7 @@ import model.Paciente;
  * @author Ronny
  */
 public class SecretariaControler {
-    private final DAOPaciente acoesPaciente = new DAOPaciente();
+    private DAOPaciente acoesPaciente = new DAOPaciente();
 
     private static SecretariaControler instance;
 
@@ -41,6 +41,6 @@ public class SecretariaControler {
     }
     
     public List<Paciente> listarPacientes(){
-        return null;
+        return acoesPaciente.listar();
     }
 }

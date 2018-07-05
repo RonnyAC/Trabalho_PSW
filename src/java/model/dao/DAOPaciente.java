@@ -5,10 +5,13 @@
  */
 package model.dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -234,7 +237,7 @@ public class DAOPaciente extends DAO {
 
         ResultSet resultSet = null;
         Statement statement = null;
-        String sqlSelect = "SELECT * FROM tbl_medicos";
+        String sqlSelect = "SELECT * FROM tbl_pacientes";
 
         try {
             Paciente paciente = new Paciente();
@@ -246,7 +249,8 @@ public class DAOPaciente extends DAO {
                 paciente.setNome(resultSet.getString("nome"));
                 paciente.setCpf(resultSet.getString("cpf"));
                 paciente.setRg(resultSet.getString("rg"));
-                paciente.setDataNascimento(resultSet.getDate("data_nascimento"));
+                String data = resultSet.getString("data_nascimento");
+                //paciente.setDataNascimento(new Java.sql.Date(new SimpleDateFormat("dd/MM/yyyy").parse(data)));
                 paciente.setEndereco(resultSet.getString("endereco"));
                 paciente.setTelefoneCelular(resultSet.getString("telefone_celular"));
                 paciente.setEmail(resultSet.getString("email"));
@@ -261,7 +265,7 @@ public class DAOPaciente extends DAO {
             }
 
         } catch (SQLException e) {
-
+            System.err.println("Erro: " + e.getMessage());
         } finally {
             try {
                 statement.close();

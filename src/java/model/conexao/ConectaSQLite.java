@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,13 +25,17 @@ public class ConectaSQLite {
      * @return 
      */
     public static boolean conectar() {
+
         try {
-            String url = "jdbc:sqlite:banco de dados/adb.db";
+            Class.forName("org.sqlite.JDBC");
+            String url = "jdbc:sqlite:BD/tpswsc.db";
             conexao = DriverManager.getConnection(url);
 
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.println("Erro: "+ e.getMessage());
             return false;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ConectaSQLite.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println("Conectou");
         return true;

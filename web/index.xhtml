@@ -1,50 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        
-        <link rel="stylesheet" type="text/css" href="css/estilo.css" />        
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    </head>
-    <body>
-        <div class="header">
-            <div id="logo">
-                <a href="index.xhtml" class="on-top">
-                    CLINICA<br/>
-                    Saude &amp; CIA<br/>
-                </a>
-            </div>
-            
-        </div>
-        
-        <nav>
-            <ul class="nav-vertical">
-                <li class="li-vertical"><a>Paciente</a>
-                    <ul> 
-                        <li><a href="faces/cadastro.xhtml">Cadastrar</a></li> 
-                        <li><a href="faces/pacientes.xhtml">Visualisar</a></li> 
-                    </ul> 
-                </li>
-                
-                <li class="li-vertical">
-                    <a href="#">Consulta</a>
-                </li>
-                
-                <li class="li-vertical">
-                    <a href="#">Relatórios</a>
-                </li>
-            </ul>
-        </nav>
-        
-        <div class="conteudo">
-            
-        </div>
-    </body>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <title>Cadastro de Pessoas</title>
+        </h:head>
+        <h:body>
+            Pacientes Cadastrados
+            <br />
+            <br />
+            <h:dataTable value="#{pacienteListagemBean.pacientes}" var="paciente"
+                         styleClass="order-table"
+                         headerClass="order-table-header"
+                         rowClasses="order-table-odd-row,order-table-even-row"
+                         >
+                <h:column>
+                    <f:facet name="header">
+                        Nome
+                    </f:facet>
+                    #{paciente.nome}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        E-mail
+                    </f:facet>
+                    #{paciente.email}
+                </h:column>
+
+            </h:dataTable>
+        </h:body>
+    </f:view>
 </html>
